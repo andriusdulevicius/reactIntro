@@ -14,14 +14,8 @@ class Counter extends Component {
     textAlign: 'center',
   };
 
-  renderColors() {
-    // if (this.state.colors.length === 0) return <p className='alert alert-warning'>There are no colors to show.</p>;
-
-    return this.state.colors.map((color) => (
-      <li key={color} className='list-group-item' style={{ background: color }}>
-        {color}
-      </li>
-    ));
+  handleIncrement() {
+    //this.state.count neveikia , nes funkcijoje/metode this === undefined/arba window
   }
 
   //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
@@ -30,7 +24,10 @@ class Counter extends Component {
       <div className='container mt-4'>
         <h2 style={{ fontSize: '2em' }}> I am react Counter component</h2>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className='btn btn-warning'> Press me </button>
+        <button onClick={this.handleIncrement} className='btn btn-warning'>
+          {' '}
+          Press me{' '}
+        </button>
         <div className='mt-4'>
           <img src={this.state.imgUrl} alt='imageRandom' />
         </div>
@@ -41,7 +38,13 @@ class Counter extends Component {
       </div>
     );
   }
-
+  renderColors() {
+    return this.state.colors.map((color) => (
+      <li key={color} className='list-group-item' style={{ background: color }}>
+        {color}
+      </li>
+    ));
+  }
   getBadgeClasses() {
     let badgeClasses = 'badge mr-3 badge-';
     badgeClasses += this.state.count > 0 ? 'info' : 'danger';
