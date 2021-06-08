@@ -5,6 +5,7 @@ class Counter extends Component {
   state = {
     count: 0,
     imgUrl: 'https://picsum.photos/200/200',
+    colors: ['yellow', 'green', 'red'],
   };
 
   h2ElStyles = {
@@ -12,6 +13,17 @@ class Counter extends Component {
     color: 'snow',
     textAlign: 'center',
   };
+
+  renderColors() {
+    // if (this.state.colors.length === 0) return <p className='alert alert-warning'>There are no colors to show.</p>;
+
+    return this.state.colors.map((color) => (
+      <li key={color} className='list-group-item' style={{ background: color }}>
+        {color}
+      </li>
+    ));
+  }
+
   //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
   render() {
     return (
@@ -20,8 +32,12 @@ class Counter extends Component {
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button className='btn btn-warning'> Press me </button>
         <div className='mt-4'>
-          <img src={this.state.imgUrl} alt='image' />
+          <img src={this.state.imgUrl} alt='imageRandom' />
         </div>
+        <ul className='list-group mt-3'>
+          {this.state.colors.length === 0 && <p className='alert alert-warning'>There are no colors to show.</p>}
+          {this.renderColors()}
+        </ul>
       </div>
     );
   }
