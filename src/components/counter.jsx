@@ -14,24 +14,10 @@ class Counter extends Component {
     textAlign: 'center',
   };
 
-  // constructor() {
-  //   //iskvieciam tevines klases konstruktoriu (Component klases)
-  //   super();
-  //   console.log(this);
-  //   //this rodo i musu counteri, norint ji naudoti kokiam metode , turime pribindinti
-  //   this.handleIncrement = this.handleIncrement.bind(this);
-  //   //visa tai yra senesnis budas
-  // }
-
-  // handleIncrement() {
-  //   //this.state.count neveikia , nes onClick funkcijoje/metode this === undefined/arba window,
-  //   //   return this.state.count++;
-  //   console.log(this.state.count);
-  // }
-
-  //rasant metoda su arrow funkcija, this islieka aukstesniame lygije, funkcija nekuria savo this. todel nereikia bindinti
   handleIncrement = () => {
-    return this.state.count;
+    //viena this.state.count++ neveiks, reikia butinai arrow function tureti, ir pakeist state tokiu budu
+    //setState butina pakeisti norint atvaizduoti ekrane pakitimus
+    this.setState({ count: this.state.count + 1 });
   };
 
   //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
