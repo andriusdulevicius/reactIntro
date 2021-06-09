@@ -14,21 +14,26 @@ class Counter extends Component {
     textAlign: 'center',
   };
 
-  handleIncrement = () => {
+  handleIncrement = (btnId) => {
     //viena this.state.count++ neveiks, reikia butinai arrow function tureti, ir pakeist state tokiu budu
     //setState butina pakeisti norint atvaizduoti ekrane pakitimus
-    this.setState({ count: this.state.count + 1 });
+    if (btnId === 'btn_1') return this.setState({ count: this.state.count + 1 });
+    this.setState({ count: this.state.count - 1 });
   };
 
   //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
+
+  //onCLick funkciju mes returne neiskvieciam o siunciam tik funkcijos nuoroda, todel skliausteliu nereikia, bet norint paduoti kazkoki parametra reikia iskviesti anonimine arrow funkcija ir jos viduje atsiusti funkcijos nuoroda su paduotu parametru
   render() {
     return (
       <div className='container mt-4'>
         <h2 style={{ fontSize: '2em' }}> I am react Counter component</h2>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button onClick={this.handleIncrement} className='btn btn-warning'>
-          {' '}
-          Press me{' '}
+        <button onClick={() => this.handleIncrement('btn_1')} className='btn btn-warning'>
+          Increase me
+        </button>
+        <button onClick={() => this.handleIncrement('btn_2')} className='btn btn-info'>
+          Decrease me
         </button>
         <div className='mt-4'>
           <img src={this.state.imgUrl} alt='imageRandom' />
@@ -56,7 +61,7 @@ class Counter extends Component {
 
   formatCount() {
     const { count } = this.state;
-    return count > 0 ? count : 'Out of stock';
+    return count > 0 ? count : 'Out of stock ' + count;
   }
 }
 
