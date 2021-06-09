@@ -15,7 +15,11 @@ class Counters extends Component {
       <div>
         <h2>Counters component</h2>
         {this.state.counters.map((c) => (
-          <Counter key={c.id} value={c.value} />
+          <Counter key={c.id} value={c.value}>
+            <h5>This is ok counter</h5>
+            <hr />
+            <small className='d-block'>All good in a hood</small>
+          </Counter>
         ))}
       </div>
     );
