@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
   //lokali komponento busena
   state = {
-    count: 0,
+    count: this.props.value,
     imgUrl: 'https://picsum.photos/200/200',
     colors: ['yellow', 'green', 'red'],
   };
