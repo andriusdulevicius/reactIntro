@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './App';
 import Counter from './components/counter';
 import reportWebVitals from './reportWebVitals';
 

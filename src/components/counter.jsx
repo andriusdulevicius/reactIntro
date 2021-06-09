@@ -14,9 +14,25 @@ class Counter extends Component {
     textAlign: 'center',
   };
 
-  handleIncrement() {
-    //this.state.count neveikia , nes funkcijoje/metode this === undefined/arba window
-  }
+  // constructor() {
+  //   //iskvieciam tevines klases konstruktoriu (Component klases)
+  //   super();
+  //   console.log(this);
+  //   //this rodo i musu counteri, norint ji naudoti kokiam metode , turime pribindinti
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  //   //visa tai yra senesnis budas
+  // }
+
+  // handleIncrement() {
+  //   //this.state.count neveikia , nes onClick funkcijoje/metode this === undefined/arba window,
+  //   //   return this.state.count++;
+  //   console.log(this.state.count);
+  // }
+
+  //rasant metoda su arrow funkcija, this islieka aukstesniame lygije, funkcija nekuria savo this. todel nereikia bindinti
+  handleIncrement = () => {
+    return this.state.count;
+  };
 
   //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
   render() {
@@ -38,6 +54,7 @@ class Counter extends Component {
       </div>
     );
   }
+
   renderColors() {
     return this.state.colors.map((color) => (
       <li key={color} className='list-group-item' style={{ background: color }}>
