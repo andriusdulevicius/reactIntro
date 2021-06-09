@@ -27,7 +27,6 @@ class Counter extends Component {
   render() {
     return (
       <div className='container mt-4'>
-        <h2 style={{ fontSize: '2em' }}> I am react Counter component</h2>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <div className='btn-group'>
           <button onClick={() => this.handleIncrement('btn_1')} className='btn btn-warning'>
@@ -37,13 +36,6 @@ class Counter extends Component {
             -
           </button>
         </div>
-        <div className='mt-4'>
-          <img src={this.state.imgUrl} alt='imageRandom' />
-        </div>
-        <ul className='list-group mt-3'>
-          {this.state.colors.length === 0 && <p className='alert alert-warning'>There are no colors to show.</p>}
-          {this.renderColors()}
-        </ul>
       </div>
     );
   }

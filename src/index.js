@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
-import Counter from './components/counter';
+import App from './App';
+
 import reportWebVitals from './reportWebVitals';
 
 //importing bootstrap
@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
