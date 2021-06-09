@@ -29,12 +29,14 @@ class Counter extends Component {
       <div className='container mt-4'>
         <h2 style={{ fontSize: '2em' }}> I am react Counter component</h2>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button onClick={() => this.handleIncrement('btn_1')} className='btn btn-warning'>
-          Increase me
-        </button>
-        <button onClick={() => this.handleIncrement('btn_2')} className='btn btn-info'>
-          Decrease me
-        </button>
+        <div className='btn-group'>
+          <button onClick={() => this.handleIncrement('btn_1')} className='btn btn-warning'>
+            +
+          </button>
+          <button onClick={() => this.handleIncrement('btn_2')} className='btn btn-info'>
+            -
+          </button>
+        </div>
         <div className='mt-4'>
           <img src={this.state.imgUrl} alt='imageRandom' />
         </div>
