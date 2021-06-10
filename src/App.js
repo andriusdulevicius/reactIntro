@@ -52,8 +52,13 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <NavBar />
-        <Counters />
+        <NavBar counters={this.state.counters} />
+        <Counters
+          onIncrement={this.handleIncrement}
+          onReset={this.handleReset}
+          onDelete={this.handleDelete}
+          counters={this.state.counters}
+        />
       </div>
     );
   }
