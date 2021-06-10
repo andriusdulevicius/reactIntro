@@ -51,7 +51,7 @@ class Counters extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container mt-3'>
         <h2>Counters component</h2>
         <button onClick={this.handleReset} className='btn btn-sm btn-warning'>
           Reset counters
