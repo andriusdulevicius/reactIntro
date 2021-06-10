@@ -11,6 +11,11 @@ class App extends Component {
       { id: 4, value: 11 },
       { id: 5, value: 11 },
     ],
+    myClasses: {
+      light: 'navbar navbar-light bg-light',
+      dark: 'navbar navbar-dark bg-dark',
+    },
+    isNavBarLight: true,
   };
 
   handleDelete = (idToDelete) => {
@@ -50,15 +55,30 @@ class App extends Component {
     plusOrMinus === 'btn_1' ? counterToIncrement.value++ : counterToIncrement.value--;
     this.setState({ counters: countersCopy });
   };
+
+  handleNavColors = () => {
+    const isNavBarLight = !this.state.isNavBarLight;
+    this.setState({ isNavBarLight });
+  };
+
   render() {
+    const { counters, myClasses, isNavBarLight } = this.state;
     return (
       <div className='App'>
-        <NavBar counters={this.state.counters} />
+        <NavBar
+          countersCount={counters.length}
+          activeCount={counters.filter((c) => c.value > 0).length}
+          myNavColors={isNavBarLight ? myClasses.light : myClasses.dark}
+        />
+        <button onClick={this.handleNavColors} className='btn m-2 btn-dark'>
+          Night Mode
+        </button>
+
         <Counters
           onIncrement={this.handleIncrement}
           onReset={this.handleReset}
           onDelete={this.handleDelete}
-          counters={this.state.counters}
+          counters={counters}
         />
       </div>
     );
