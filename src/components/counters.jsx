@@ -24,7 +24,7 @@ class Counters extends Component {
     console.log('Reset please');
     //gauti busena kuri yra counters kopija kurioje visi value: 0
     const nunulinta = this.state.counters.map((c) => {
-      c.value = 0;
+      c.value = 1;
       return c;
     });
     console.log(nunulinta);
@@ -33,14 +33,20 @@ class Counters extends Component {
   };
 
   handleIncrement = (plusOrMinus, counter) => {
-    console.log('plusOrMinus', plusOrMinus);
-    console.log(counter);
-    // niekada nekeiciam state tiesiogiai !!!!!!
-    // this.state.count++;
-
-    // let diff = btnId === 'btn_1' ? 1 : -1;
-
-    // this.setState({ value: this.state.value + diff });
+    const countersCopy = [...this.state.counters];
+    //Mano budas
+    // let difference = plusOrMinus === 'btn_1' ? 1 : -1;
+    // countersCopy.forEach((c) =>(c.id === counter.id) {
+    //     const counterNewVal = c.value + difference;
+    //     c.id = counter.id;
+    //     c.value = counterNewVal;
+    //   }
+    // });
+    //destytojo budas:
+    const counterToIncrement = countersCopy.find((c) => c.id === counter.id);
+    // console.log(counterToIncrement);
+    plusOrMinus === 'btn_1' ? counterToIncrement.value++ : counterToIncrement.value--;
+    this.setState({ counters: countersCopy });
   };
 
   render() {
