@@ -7,6 +7,11 @@ class NavBar extends Component {
         <span className='navbar-brand mb-0'>
           <strong>Counters </strong> Anywhere
         </span>
+        {this.props.counters.map((c) => (
+          <a href='/' key={c.id}>
+            {c.id}
+          </a>
+        ))}
       </nav>
     );
   }
