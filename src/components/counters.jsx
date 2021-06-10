@@ -11,25 +11,57 @@ class Counters extends Component {
     ],
   };
 
-  handleDelete = (id) => {
-    const result = this.state.counters.filter((c) => c.id !== id);
-    this.setState({ counters: result });
+  handleDelete = (idToDelete) => {
+    // gauti state busena be to el kuris buvo paspaustas
+    const countersWihtoutOne = this.state.counters.filter((c) => c.id !== idToDelete);
+    // console.log(countersWihtoutOne);
+    // nustatyti nauja busena su setState()
+    this.setState({ counters: countersWihtoutOne });
+    // console.log('whichOneClicked', idToDelete);
+  };
+
+  handleReset = () => {
+    console.log('Reset please');
+    //gauti busena kuri yra counters kopija kurioje visi value: 0
+    const nunulinta = this.state.counters.map((c) => {
+      c.value = 0;
+      return c;
+    });
+    console.log(nunulinta);
+    // gave nustatom busena // patikrinam ar veikia
+    this.setState({ counters: nunulinta });
+  };
+
+  handleIncrement = (plusOrMinus, counter) => {
+    console.log('plusOrMinus', plusOrMinus);
+    console.log(counter);
+    // niekada nekeiciam state tiesiogiai !!!!!!
+    // this.state.count++;
+
+    // let diff = btnId === 'btn_1' ? 1 : -1;
+
+    // this.setState({ value: this.state.value + diff });
   };
 
   render() {
     return (
       <div>
         <h2>Counters component</h2>
+        <button onClick={this.handleReset} className='btn btn-sm btn-warning'>
+          Reset counters
+        </button>
         {this.state.counters.map((c) => (
-          <Counter key={c.id} value={c.value} id={c.id} onDelete={this.handleDelete}>
-            <h5>This is ok counter</h5>
-            <hr />
-            <small className='d-block'>All good in a hood</small>
-          </Counter>
+          <Counter
+            key={c.id}
+            counter={c}
+            oId='blue'
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+          ></Counter>
         ))}
       </div>
     );
   }
 }
-//i props pasiduoda viskas kas yra Counter viduje (counter klaseje) isskyrus key, nes key yra specialus componentu atskyrimo zenklinimas
+
 export default Counters;

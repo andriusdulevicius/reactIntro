@@ -1,65 +1,43 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-  //lokali komponento busena
-  state = {
-    count: this.props.value,
-    imgUrl: 'https://picsum.photos/200/200',
-    colors: ['yellow', 'green', 'red'],
-  };
-
-  h2ElStyles = {
-    background: 'tomato',
-    color: 'snow',
-    textAlign: 'center',
-  };
-
-  handleIncrement = (btnId) => {
-    //viena this.state.count++ neveiks, reikia butinai arrow function tureti, ir pakeist state tokiu budu
-    //setState butina pakeisti norint atvaizduoti ekrane pakitimus
-    if (btnId === 'btn_1') return this.setState({ count: this.state.count + 1 });
-    this.setState({ count: this.state.count - 1 });
-  };
-
-  //Javascriptas jsx veikia riestiniuose skliausteliuose render() metode {} , nes render kaip ir state yra spec reacto sukurti metodai
-
-  //onCLick funkciju mes returne neiskvieciam o siunciam tik funkcijos nuoroda, todel skliausteliu nereikia, bet norint paduoti kazkoki parametra reikia iskviesti anonimine arrow funkcija ir jos viduje atsiusti funkcijos nuoroda su paduotu parametru
   render() {
+    // console.log('this.props', this.props);
     return (
-      <div className='container mt-4'>
-        {this.props.children}
+      <div className='mt-4'>
+        <span className='mr-3'># {this.props.counter.id}</span>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <div className='btn-group'>
-          <button onClick={() => this.handleIncrement('btn_1')} className='btn btn-warning'>
+          <button onClick={() => this.props.onIncrement('btn_1', this.props.counter)} className='btn btn-warning'>
             +
           </button>
-          <button onClick={() => this.handleIncrement('btn_2')} className='btn btn-info'>
+          <button onClick={() => this.props.onIncrement('btn_2', this.props.counter)} className='btn btn-info'>
             -
           </button>
         </div>
-        <button onClick={() => this.props.onDelete(this.props.id)} className='btn btn-danger btn-sm ml-5'>
-          Delete me
+        <button onClick={() => this.props.onDelete(this.props.counter.id)} className='btn btn-danger btn-sm ml-5'>
+          Delete me please
         </button>
       </div>
     );
   }
 
   renderColors() {
-    return this.state.colors.map((color) => (
-      <li key={color} className='list-group-item' style={{ background: color }}>
+    return this.props.counter.colors.map((color) => (
+      <li key={color} style={{ background: color }} className='list-group-item'>
         {color}
       </li>
     ));
   }
   getBadgeClasses() {
     let badgeClasses = 'badge mr-3 badge-';
-    badgeClasses += this.state.count > 0 ? 'info' : 'danger';
+    badgeClasses += this.props.counter.value === 0 ? 'danger' : 'info';
     return badgeClasses;
   }
 
   formatCount() {
-    const { count } = this.state;
-    return count > 0 ? count : 'Out of stock ' + count;
+    const { value: count } = this.props.counter;
+    return count === 0 ? 'Out of stock' : count;
   }
 }
 
