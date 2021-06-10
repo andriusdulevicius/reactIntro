@@ -9,6 +9,7 @@ class App extends Component {
       { id: 2, value: 10 },
       { id: 3, value: 1 },
       { id: 4, value: 11 },
+      { id: 5, value: 11 },
     ],
   };
 
