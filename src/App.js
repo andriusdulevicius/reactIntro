@@ -17,7 +17,8 @@ class App extends Component {
     console.log('app constructor');
   }
 
-  //sis metodas reikalingas tam , kad fetchinant state esancius duomenis is nutolusio serverio , nes componentDidMount uzkrauna paskutini( tai reiskia, kad ispradzius bus matomi tusti komponentai ,ir uzkrovus duomenis is fetch jie bus atvaizduojami )
+  //sis metodas reikalingas tam , kad fetchinant state esancius duomenis is nutolusio serverio palauktu, bet nestabdytu krauti kitu elementu ,
+  //nes componentDidMount uzkrauna paskutini pries pat uzkraunant DOM( tai reiskia, kad ispradzius bus matomi tusti komponentai pvz tabele headers ,ir uzkrovus duomenis is fetch jie bus atvaizduojami i table rows)
   componentDidMount() {
     console.log('App componentdidMount (mount to dom)');
     //tarkim counterData = fetch('..')  --- parfetchinta data

@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
+  //ivyksta, ivykus betkokiam pasikeitimui
+  componentDidUpdate() {
+    console.log('Counter - componentDidUpdate');
+  }
+  componentWillUnmount() {
+    console.log('Counter - componentWILLuMount');
+  }
+
   render() {
     console.log('Counter rendered');
     // console.log('this.props', this.props);
