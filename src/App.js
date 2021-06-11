@@ -4,19 +4,33 @@ import NavBar from './components/navbar';
 
 class App extends Component {
   state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 10 },
-      { id: 3, value: 1 },
-      { id: 4, value: 11 },
-      { id: 5, value: 11 },
-    ],
+    counters: [],
     myClasses: {
       light: 'navbar navbar-light bg-light',
       dark: 'navbar navbar-dark bg-dark',
     },
     isNavBarLight: true,
   };
+
+  constructor() {
+    super();
+    console.log('app constructor');
+  }
+
+  //sis metodas reikalingas tam , kad fetchinant state esancius duomenis is nutolusio serverio , nes componentDidMount uzkrauna paskutini( tai reiskia, kad ispradzius bus matomi tusti komponentai ,ir uzkrovus duomenis is fetch jie bus atvaizduojami )
+  componentDidMount() {
+    console.log('App componentdidMount (mount to dom)');
+    //tarkim counterData = fetch('..')  --- parfetchinta data
+    const counterData = [
+      { id: 1, value: 4 },
+      { id: 2, value: 10 },
+      { id: 3, value: 1 },
+      { id: 4, value: 11 },
+      { id: 5, value: 11 },
+    ];
+
+    this.setState({ counters: counterData });
+  }
 
   handleDelete = (idToDelete) => {
     // gauti state busena be to el kuris buvo paspaustas
@@ -62,6 +76,8 @@ class App extends Component {
   };
 
   render() {
+    console.log('Render App');
+
     const { counters, myClasses, isNavBarLight } = this.state;
     return (
       <div className='App'>

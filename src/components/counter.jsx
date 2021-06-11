@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
   render() {
+    console.log('Counter rendered');
     // console.log('this.props', this.props);
     return (
       <div className='mt-4'>

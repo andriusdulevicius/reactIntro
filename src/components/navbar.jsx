@@ -2,6 +2,7 @@
 
 //funkciniu budu taip issidestrukturizuojam propsus, paduotus app.js renderyje
 const NavBar = ({ countersCount, activeCount, isNavBarLight, myNavColors }) => {
+  console.log('navbar created');
   return (
     <nav className={myNavColors}>
       <span className='navbar-brand mb-0'>
